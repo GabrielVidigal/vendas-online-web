@@ -9,7 +9,7 @@ import {
 } from '../../../shared/functions/connection/auth';
 import { connectionAPIGet } from '../../../shared/functions/connection/connectionAPI';
 import { LoginRoutesEnum } from '../../login/routes';
-import { ProductRoutesEnum } from '../../product/screens/routes';
+import { ProductRoutesEnum } from '../../product/routes';
 
 const FirstScreen = () => {
   const navigate = useNavigate();
