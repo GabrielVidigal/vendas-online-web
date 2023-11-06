@@ -6,7 +6,10 @@ import { ProductRoutesEnum } from '../../modules/product/routes';
 import { ERROR_INVALID_PASSWORD } from '../constants/errosStatus';
 import { URL_AUTH } from '../constants/urls';
 import { setAuthorizationToken } from '../functions/connection/auth';
-import ConnectionAPI, { MethodType, connectionAPIPost } from '../functions/connection/connectionAPI';
+import ConnectionAPI, {
+  connectionAPIPost,
+  MethodType,
+} from '../functions/connection/connectionAPI';
 import { useGlobalContext } from './useGlobalContext';
 
 export const useRequests = () => {
@@ -14,12 +17,17 @@ export const useRequests = () => {
   const navigate = useNavigate();
   const { setNotification, setUser } = useGlobalContext();
 
-  const request = async <T>(url: string, method: MethodType, saveGlobal?: (object: T) => void,  body?: unknown): Promise<T | undefined>  => {
+  const request = async <T>(
+    url: string,
+    method: MethodType,
+    saveGlobal?: (object: T) => void,
+    body?: unknown,
+  ): Promise<T | undefined> => {
     setLoading(true);
     const returnObject: T | undefined = await ConnectionAPI.connect<T>(url, method, body)
       .then((result) => {
-        if(saveGlobal){
-          saveGlobal(result)
+        if (saveGlobal) {
+          saveGlobal(result);
         }
         return result;
       })
@@ -27,24 +35,7 @@ export const useRequests = () => {
         setNotification(error.message, 'error');
         return undefined;
       });
-      return returnObject;
-  };
-
-  const postRequest = async <T>(url: string, body: unknown): Promise<T | undefined> => {
-    setLoading(true);
-    const returnData = await connectionAPIPost<T>(url, body)
-      .then((result) => {
-        return result;
-      })
-      .catch((error: Error) => {
-        setNotification(error.message, 'error');
-        return undefined;
-      });
-
-      setLoading(false)
-
-    setLoading(false);
-    return returnData;
+    return returnObject;
   };
 
   const authRequest = async (body: unknown): Promise<void> => {
@@ -68,6 +59,5 @@ export const useRequests = () => {
     loading,
     authRequest,
     request,
-    postRequest,
   };
 };

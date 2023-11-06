@@ -4,7 +4,6 @@ import { ERROR_ACCESS_DANIED, ERROR_CONNECTION } from '../../constants/errosStat
 import { MethodsEnum } from '../../enums/methods.enum';
 import { getAuthorizationToken } from './auth';
 
-
 export type MethodType = 'get' | 'post' | 'put' | 'patch' | 'delete';
 
 export default class ConnectionAPI {
@@ -20,9 +19,9 @@ export default class ConnectionAPI {
       case MethodsEnum.PUT:
       case MethodsEnum.PATCH:
         return (await axios[method]<T>(url, body, config)).data;
-        case MethodsEnum.GET:
+      case MethodsEnum.GET:
       case MethodsEnum.DELETE:
-        default:
+      default:
         return (await axios[method]<T>(url, config)).data;
     }
   }
