@@ -19,11 +19,10 @@ export const verifyLoggedIn = async () => {
   if (!token) {
     location.href = '/login';
   }
-    await connectionAPIGet<UserType>(URL_USER) 
-      .catch(() => {
-        unsetAuthorizationToken();
-        location.href = '/login';
-      });
-  
+  await connectionAPIGet<UserType>(URL_USER).catch(() => {
+    unsetAuthorizationToken();
+    location.href = '/login';
+  });
+
   return null;
 };
