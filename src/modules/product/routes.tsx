@@ -5,7 +5,7 @@ import ProductInsert from './screens/ProductInsert';
 
 export enum ProductRoutesEnum {
   PRODUCT = '/product',
-  PRODUCT_ISNERT = '/product/insert',
+  PRODUCT_INSERT = '/product/insert',
 }
 
 export const productScreens: RouteObject[] = [
@@ -14,7 +14,7 @@ export const productScreens: RouteObject[] = [
     element: <Product />,
   },
   {
-    path: ProductRoutesEnum.PRODUCT_ISNERT,
+    path: ProductRoutesEnum.PRODUCT_INSERT,
     element: <ProductInsert />,
   },
 ];

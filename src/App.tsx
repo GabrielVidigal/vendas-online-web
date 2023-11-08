@@ -10,7 +10,7 @@ import { MethodsEnum } from './shared/enums/methods.enum';
 import { verifyLoggedIn } from './shared/functions/connection/auth';
 import { useGlobalContext } from './shared/hooks/useGlobalContext';
 import { useNotification } from './shared/hooks/useNotification';
-import { useRequests } from './shared/hooks/useRequest';
+import { useRequests } from './shared/hooks/useRequests';
 
 const routes: RouteObject[] = [...loginRoutes];
 const routesLoggedIn: RouteObject[] = [...firstScreenRoutes, ...productScreens].map((route) => ({

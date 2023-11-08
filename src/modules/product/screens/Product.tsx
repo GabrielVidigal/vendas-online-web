@@ -1,19 +1,23 @@
+import { Input } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import Button from '../../../shared/components/buttons/button/Button';
+import Screen from '../../../shared/components/screen/Screen';
 import Table from '../../../shared/components/table/Table';
 import { URL_PRODUCT } from '../../../shared/constants/urls';
 import { MethodsEnum } from '../../../shared/enums/methods.enum';
+import { convertNumberToMoney } from '../../../shared/functions/money';
 import { useDataContext } from '../../../shared/hooks/useDataContext';
-import { useRequests } from '../../../shared/hooks/useRequest';
+import { useRequests } from '../../../shared/hooks/useRequests';
 import { ProductType } from '../../../shared/types/ProductType';
-import CategoryColum from '../components/CategoryColumn';
+import CategoryColumn from '../components/CategoryColumn';
 import TooltipImage from '../components/TooltipImage';
-import { coverNumberToMony } from '../../../shared/functions/money';
-import Screen from '../../../shared/components/screen/Screen';
-import Button from '../../../shared/components/buttons/button/Button';
 import { ProductRoutesEnum } from '../routes';
-import { useNavigate } from 'react-router-dom';
+import { BoxButtons, LimiteSizeButton, LimiteSizeInput } from '../styles/product.style';
+
+const { Search } = Input;
 
 const columns: ColumnsType<ProductType> = [
   {
@@ -26,49 +30,74 @@ const columns: ColumnsType<ProductType> = [
     title: 'Nome',
     dataIndex: 'name',
     key: 'name',
+    sorter: (a, b) => a.name.localeCompare(b.name),
     render: (text) => <a>{text}</a>,
   },
   {
     title: 'Categoria',
     dataIndex: 'category',
     key: 'category',
-    render: (_, product) => <CategoryColum category={product.category} />,
+    render: (_, product) => <CategoryColumn category={product.category} />,
   },
   {
     title: 'Preço',
     dataIndex: 'price',
     key: 'price',
-    render: (_, product) => <a>{coverNumberToMony(product.price)}</a>,
+    render: (_, product) => <a>{convertNumberToMoney(product.price)}</a>,
   },
 ];
 
 const Product = () => {
   const { products, setProducts } = useDataContext();
+  const [productsFiltered, setProdutsFiltered] = useState<ProductType[]>([]);
   const { request } = useRequests();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setProdutsFiltered([...products]);
+  }, [products]);
 
   useEffect(() => {
     request<ProductType[]>(URL_PRODUCT, MethodsEnum.GET, setProducts);
   }, []);
 
-  const handleOnclickInsert = () => {
-    navigate(ProductRoutesEnum.PRODUCT_ISNERT)
-  }
+  const handleOnClickInsert = () => {
+    navigate(ProductRoutesEnum.PRODUCT_INSERT);
+  };
 
+  const onSearch = (value: string) => {
+    if (!value) {
+      setProdutsFiltered([...products]);
+    } else {
+      setProdutsFiltered([...productsFiltered.filter((product) => product.name.includes(value))]);
+    }
+  };
 
-  return ( 
-      <Screen listBreadcrumb={[
+  return (
+    <Screen
+      listBreadcrumb={[
         {
           name: 'HOME',
         },
         {
-          name: 'PRODUTOS'
-        }
+          name: 'PRODUTOS',
+        },
       ]}
-      >
-        <Button onClick={handleOnclickInsert}>Inserir</Button>
-        <Table columns={columns} dataSource={products} />
-      </Screen>
-      );
+    >
+      <BoxButtons>
+        <LimiteSizeInput>
+          <Search placeholder="Buscar produto" onSearch={onSearch} enterButton />
+        </LimiteSizeInput>
+
+        <LimiteSizeButton>
+          <Button type="primary" onClick={handleOnClickInsert}>
+            Inserir
+          </Button>
+        </LimiteSizeButton>
+      </BoxButtons>
+      <Table columns={columns} dataSource={productsFiltered} />
+    </Screen>
+  );
 };
+
 export default Product;
