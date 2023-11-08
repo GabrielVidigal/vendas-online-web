@@ -1,15 +1,14 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ContainerTooltip = styled.div`
+  position: relative;
 
-    position: relative;
-
-    :hover {
-        div {
-            display: block;
-        }
+  :hover {
+    div {
+      display: block;
     }
-`
+  }
+`;
 
 export const ContainerExternal = styled.div`
 
@@ -20,4 +19,4 @@ export const ContainerExternal = styled.div`
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.4)
     z-index: 10;
-`
+`;
