@@ -9,6 +9,11 @@ import { useRequests } from '../../../shared/hooks/useRequest';
 import { ProductType } from '../../../shared/types/ProductType';
 import CategoryColum from '../components/CategoryColumn';
 import TooltipImage from '../components/TooltipImage';
+import { coverNumberToMony } from '../../../shared/functions/money';
+import Screen from '../../../shared/components/screen/Screen';
+import Button from '../../../shared/components/buttons/button/Button';
+import { ProductRoutesEnum } from '../routes';
+import { useNavigate } from 'react-router-dom';
 
 const columns: ColumnsType<ProductType> = [
   {
@@ -33,17 +38,37 @@ const columns: ColumnsType<ProductType> = [
     title: 'Preço',
     dataIndex: 'price',
     key: 'price',
-    render: (text) => <a>{text}</a>,
+    render: (_, product) => <a>{coverNumberToMony(product.price)}</a>,
   },
 ];
 
 const Product = () => {
   const { products, setProducts } = useDataContext();
   const { request } = useRequests();
+  const navigate = useNavigate()
 
   useEffect(() => {
     request<ProductType[]>(URL_PRODUCT, MethodsEnum.GET, setProducts);
   }, []);
-  return <Table columns={columns} dataSource={products} />;
+
+  const handleOnclickInsert = () => {
+    navigate(ProductRoutesEnum.PRODUCT_ISNERT)
+  }
+
+
+  return ( 
+      <Screen listBreadcrumb={[
+        {
+          name: 'HOME',
+        },
+        {
+          name: 'PRODUTOS'
+        }
+      ]}
+      >
+        <Button onClick={handleOnclickInsert}>Inserir</Button>
+        <Table columns={columns} dataSource={products} />
+      </Screen>
+      );
 };
 export default Product;
