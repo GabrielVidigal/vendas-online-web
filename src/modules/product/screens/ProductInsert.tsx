@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
+import Input from '../../../shared/components/inputs/input/Input';
+import InputMoney from '../../../shared/components/inputs/inputMoney/InputMoney';
 import Select from '../../../shared/components/inputs/select/Select';
 import Screen from '../../../shared/components/screen/Screen';
 import { URL_CATEGORY, URL_PRODUCT } from '../../../shared/constants/urls';
@@ -15,8 +17,6 @@ import { LimitedContainer } from '../../../shared/styles/limited.styled';
 import { InsertProduct } from '../../../shared/types/dtos/InsertProduct.dto';
 import { ProductRoutesEnum } from '../routes';
 import { ProductInsertContainer } from '../styles/productInsert.style';
-import InputMoney from '../../../shared/components/inputs/inputMoney/InputMoney';
-import Input from '../../../shared/components/inputs/input/Input';
 
 const ProductInsert = () => {
   const [product, setProduct] = useState<InsertProduct>({
