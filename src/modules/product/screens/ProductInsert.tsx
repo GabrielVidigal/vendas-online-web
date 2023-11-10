@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
-import Input from '../../../shared/components/inputs/input/input';
 import Select from '../../../shared/components/inputs/select/Select';
 import Screen from '../../../shared/components/screen/Screen';
 import { URL_CATEGORY, URL_PRODUCT } from '../../../shared/constants/urls';
 import { MethodsEnum } from '../../../shared/enums/methods.enum';
 import { connectionAPIPost } from '../../../shared/functions/connection/connectionAPI';
 import { useDataContext } from '../../../shared/hooks/useDataContext';
+import { useGlobalContext } from '../../../shared/hooks/useGlobalContext';
 import { useRequests } from '../../../shared/hooks/useRequests';
+import { DisplayFlexJustifyRight } from '../../../shared/styles/display.styled';
+import { LimitedContainer } from '../../../shared/styles/limited.styled';
 import { InsertProduct } from '../../../shared/types/dtos/InsertProduct.dto';
 import { ProductRoutesEnum } from '../routes';
 import { ProductInsertContainer } from '../styles/productInsert.style';
-import { LimitedContainer } from '../../../shared/styles/limited.styled';
-import { DisplayFlexJustifyRight } from '../../../shared/styles/display.styled';
-import { useNavigate } from 'react-router-dom';
-import { useGlobalContext } from '../../../shared/hooks/useGlobalContext';
+import InputMoney from '../../../shared/components/inputs/inputMoney/InputMoney';
+import Input from '../../../shared/components/inputs/input/Input';
 
 const ProductInsert = () => {
   const [product, setProduct] = useState<InsertProduct>({
@@ -98,7 +99,7 @@ const ProductInsert = () => {
             title="Url imagem"
             placeholder="Url imagem"
           />
-          <Input
+          <InputMoney
             onChange={(event) => onChange(event, 'price', true)}
             value={product.price}
             margin="0px 0px 16px 0px"
