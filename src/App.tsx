@@ -11,6 +11,7 @@ import { getAuthorizationToken, verifyLoggedIn } from './shared/functions/connec
 import { useGlobalContext } from './shared/hooks/useGlobalContext';
 import { useNotification } from './shared/hooks/useNotification';
 import { useRequests } from './shared/hooks/useRequests';
+import { categoryScreens } from './modules/category/routes';
 
 const routes: RouteObject[] = [...loginRoutes];
 const routesLoggedIn: RouteObject[] = [...firstScreenRoutes, ...productScreens].map((route) => ({
@@ -18,7 +19,7 @@ const routesLoggedIn: RouteObject[] = [...firstScreenRoutes, ...productScreens].
   loader: () => verifyLoggedIn(),
 }));
 
-const router: RemixRouter = createBrowserRouter([...routes, ...routesLoggedIn]);
+const router: RemixRouter = createBrowserRouter([...routes, ...categoryScreens, ...routesLoggedIn]);
 
 function App() {
   const { contextHolder } = useNotification();
