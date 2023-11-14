@@ -11,8 +11,10 @@ import {
   LimitedContainer,
   TitleLogin,
 } from '../styles/loginScreen.styles';
+import { useNavigate } from 'react-router-dom';
 
 const LoginScreen = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { authRequest, loading } = useRequests();
@@ -26,7 +28,7 @@ const LoginScreen = () => {
   };
 
   const handleLogin = () => {
-    authRequest({
+    authRequest(navigate, {
       email: email,
       password: password,
     });
