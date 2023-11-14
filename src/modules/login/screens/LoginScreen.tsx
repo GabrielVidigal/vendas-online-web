@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import SVGLogo from '../../../shared/components/icons/SVGLogo';
@@ -11,7 +12,6 @@ import {
   LimitedContainer,
   TitleLogin,
 } from '../styles/loginScreen.styles';
-import { useNavigate } from 'react-router-dom';
 
 const LoginScreen = () => {
   const navigate = useNavigate();

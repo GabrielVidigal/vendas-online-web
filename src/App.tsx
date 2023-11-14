@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     const token = getAuthorizationToken();
-    if (token ) {
+    if (token) {
       request(URL_USER, MethodsEnum.GET, setUser);
     }
   }, []);
