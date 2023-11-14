@@ -1,4 +1,4 @@
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
@@ -6,15 +6,15 @@ import Input from '../../../shared/components/inputs/input/Input';
 import InputMoney from '../../../shared/components/inputs/inputMoney/InputMoney';
 import Select from '../../../shared/components/inputs/select/Select';
 import Screen from '../../../shared/components/screen/Screen';
-import { URL_CATEGORY} from '../../../shared/constants/urls';
+import { URL_CATEGORY } from '../../../shared/constants/urls';
 import { MethodsEnum } from '../../../shared/enums/methods.enum';
 import { useDataContext } from '../../../shared/hooks/useDataContext';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import { DisplayFlexJustifyRight } from '../../../shared/styles/display.styled';
 import { LimitedContainer } from '../../../shared/styles/limited.styled';
+import { useInsertProduct } from '../hooks/userInsertProduct';
 import { ProductRoutesEnum } from '../routes';
 import { ProductInsertContainer } from '../styles/productInsert.style';
-import { useInsertProduct } from '../hooks/userInsertProduct';
 
 const ProductInsert = () => {
   const {
@@ -25,7 +25,7 @@ const ProductInsert = () => {
     handleChangeSelect,
     handleInsertProduct,
   } = useInsertProduct();
-  
+
   const { categories, setCategories } = useDataContext();
   const { request } = useRequests();
   const navigate = useNavigate();
@@ -36,13 +36,9 @@ const ProductInsert = () => {
     }
   }, []);
 
- 
-
   const handleOnClickCancel = () => {
     navigate(ProductRoutesEnum.PRODUCT);
   };
-
-  
 
   return (
     <Screen
@@ -93,12 +89,17 @@ const ProductInsert = () => {
           />
           <DisplayFlexJustifyRight>
             <LimitedContainer margin="0px 8px" width={120}>
-              <Button  danger onClick={handleOnClickCancel}>
+              <Button danger onClick={handleOnClickCancel}>
                 Cancelar
               </Button>
             </LimitedContainer>
             <LimitedContainer width={120}>
-              <Button loading={loading} disabled={disabledButton} onClick={handleInsertProduct} type="primary">
+              <Button
+                loading={loading}
+                disabled={disabledButton}
+                onClick={handleInsertProduct}
+                type="primary"
+              >
                 Inserir produto
               </Button>
             </LimitedContainer>
