@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import { LoginRoutesEnum } from '../../login/routes';
-import { ContainerPageNotFound } from '../styles/pageNotFound,styles';
+import { ContainerPageNotFound } from '../styles/pageNotFound.styles';
 
 const PageNotFound = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const PageNotFound = () => {
       <Result
         status="404"
         title="404"
-        subTitle="Desculpe, a página que voce está visitando não existe."
+        subTitle="Desculpe, a página que você está visitando não existe."
         extra={
           <Button onClick={handleOnClickButton} type="primary">
             Página de Login

@@ -14,6 +14,7 @@ const FirstScreen = () => {
       navigate(ProductRoutesEnum.PRODUCT);
     }
   }, [user]);
+
   return <Spin />;
 };
 

@@ -44,7 +44,7 @@ export const useDataContext = () => {
 
   return {
     products: data?.products || [],
-    categories: data?.products || [],
+    categories: data?.categories || [],
     setProducts,
     setCategories,
   };

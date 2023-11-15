@@ -1,6 +1,6 @@
 import { Select as SelectAntd, SelectProps as SelectPropsAntd } from 'antd';
 
-import { BoxSelect, TitleSelect } from '../input/input.styles';
+import { BoxSelect, TitleSelect } from './select.styles';
 
 interface SelectProps extends SelectPropsAntd {
   title?: string;

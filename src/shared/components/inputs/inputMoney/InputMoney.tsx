@@ -28,6 +28,7 @@ const InputMoney = ({ value, onChange, addonBefore = 'R$', ...props }: InputMone
     const newValue = [valueRemoved.slice(0, sizeSlice), '.', valueRemoved.slice(sizeSlice)].join(
       '',
     );
+
     onChange({
       ...event,
       target: {

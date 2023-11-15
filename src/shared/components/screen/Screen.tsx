@@ -22,6 +22,7 @@ const Screen = ({ children, listBreadcrumb }: ScreenProps) => {
             <Divider />
           </>
         )}
+
         {children}
       </ScreenContainer>
     </>

@@ -2,7 +2,7 @@ import { Tag } from 'antd';
 
 import { CategoryType } from '../../../shared/types/CategoryType';
 
-interface CategoryColumProps {
+interface CategoryColumnProps {
   category?: CategoryType;
 }
 
@@ -10,22 +10,23 @@ const colors: string[] = [
   'green',
   'red',
   'orange',
-  'geekblue',
   'gold',
   'volcano',
-  'purple',
-  'blue',
   'cyan',
-  'lime',
   'magenta',
+  'blue',
+  'geekblue',
+  'purple',
+  'lime',
 ];
 
-const CategoryColum = ({ category }: CategoryColumProps) => {
+const CategoryColumn = ({ category }: CategoryColumnProps) => {
   if (!category) {
     return null;
   }
   const currentColor = colors[category.id - 1] || colors[0];
+
   return <Tag color={currentColor}>{category.name}</Tag>;
 };
 
-export default CategoryColum;
+export default CategoryColumn;

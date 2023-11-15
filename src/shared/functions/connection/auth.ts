@@ -5,11 +5,11 @@ import { UserType } from '../../../modules/login/types/UserType';
 import { AUTHORIZATION_KEY } from '../../constants/authorizationConstants';
 import { URL_USER } from '../../constants/urls';
 import { connectionAPIGet } from './connectionAPI';
-import { getItemStorage, removeItemStorage, setItemStorage } from './StorageProxy';
+import { getItemStorage, removeItemStorage, setItemStorage } from './storageProxy';
 
 export const unsetAuthorizationToken = () => removeItemStorage(AUTHORIZATION_KEY);
 
-export const setAuthorizationToken = (token: string) => {
+export const setAuthorizationToken = (token?: string) => {
   if (token) {
     setItemStorage(AUTHORIZATION_KEY, token);
   }
@@ -29,6 +29,7 @@ export const verifyLoggedIn = async () => {
   if (!user) {
     return redirect(LoginRoutesEnum.LOGIN);
   }
+
   return null;
 };
 

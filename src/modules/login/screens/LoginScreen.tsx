@@ -33,6 +33,7 @@ const LoginScreen = () => {
       password: password,
     });
   };
+
   return (
     <ContainerLoginScreen>
       <ContainerLogin>
@@ -41,7 +42,7 @@ const LoginScreen = () => {
           <TitleLogin level={2} type="secondary">
             LOGIN
           </TitleLogin>
-          <Input title="USÚARIO" margin="32px 0px 0px" onChange={handleEmail} value={email} />
+          <Input title="USUÁRIO" margin="32px 0px 0px" onChange={handleEmail} value={email} />
           <Input
             type="password"
             title="SENHA"
