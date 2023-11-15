@@ -5,7 +5,10 @@ import Input from '../../../shared/components/inputs/input/Input';
 import InputMoney from '../../../shared/components/inputs/inputMoney/InputMoney';
 import Select from '../../../shared/components/inputs/select/Select';
 import Screen from '../../../shared/components/screen/Screen';
-import { DisplayFlexJustifyCenter, DisplayFlexJustifyRight } from '../../../shared/components/styles/display.styled';
+import {
+  DisplayFlexJustifyCenter,
+  DisplayFlexJustifyRight,
+} from '../../../shared/components/styles/display.styled';
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled';
 import { useCategory } from '../../category/hooks/useCategory';
 import { useInsertProduct } from '../hooks/useInsertProduct';
@@ -20,10 +23,9 @@ const ProductInsert = () => {
     handleInsertProduct,
     handleChangeSelect,
   } = useInsertProduct();
-  
+
   const { categories } = useCategory();
   const navigate = useNavigate();
-
 
   const handleOnClickCancel = () => {
     navigate(ProductRoutesEnum.PRODUCT);
