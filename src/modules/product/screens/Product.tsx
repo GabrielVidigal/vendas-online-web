@@ -13,10 +13,10 @@ import { MethodsEnum } from '../../../shared/enums/methods.enum';
 import { convertNumberToMoney } from '../../../shared/functions/money';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import { ProductType } from '../../../shared/types/ProductType';
+import { useProductReducer } from '../../../store/reducers/productReducer/useProductReducer';
 import CategoryColumn from '../components/CategoryColumn';
 import TooltipImage from '../components/TooltipImage';
 import { ProductRoutesEnum } from '../routes';
-import { useProductReducer } from '../../../store/reducers/productReducer/useProductReducer';
 
 const { Search } = Input;
 
@@ -49,7 +49,7 @@ const columns: ColumnsType<ProductType> = [
 ];
 
 const Product = () => {
-  const { products, setProducts } = useProductReducer() 
+  const { products, setProducts } = useProductReducer();
 
   const [productsFiltered, setProdutsFiltered] = useState<ProductType[]>([]);
   const { request } = useRequests();
