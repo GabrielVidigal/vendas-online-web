@@ -7,6 +7,9 @@ import { convertNumberToMoney } from '../../../shared/functions/money';
 import ListOrderProduct from '../components/ListOrderProduct';
 import { useOrderDetail } from '../hooks/useOrderDetail';
 import { OrderRoutesEnum } from '../routes';
+import { insertMaskInCpf } from '../../../shared/functions/cpf';
+import { insertMaskInPhone } from '../../../shared/functions/phone';
+import { insertMaskInCEP } from '../../../shared/functions/address';
 
 const OrderDetail = () => {
   const { orderId } = useParams<{ orderId: string }>();
@@ -41,9 +44,9 @@ const OrderDetail = () => {
             <Descriptions.Item label="Email" span={2}>
               {order.user?.email}
             </Descriptions.Item>
-            <Descriptions.Item label="Telefone">{order.user?.phone}</Descriptions.Item>
+            <Descriptions.Item label="Telefone">{insertMaskInPhone(order.user?.phone)}</Descriptions.Item>
             <Descriptions.Item label="CPF" span={2}>
-              {order.user?.cpf}
+              {insertMaskInCpf(order.user?.cpf)}
             </Descriptions.Item>
           </Descriptions>
           <Divider />
@@ -71,7 +74,7 @@ const OrderDetail = () => {
             <Descriptions.Item label="Complemento">{order.address?.complement}</Descriptions.Item>
             <Descriptions.Item label="Número">{order.address?.numberAddress}</Descriptions.Item>
             <Descriptions.Item label="CEP" span={2}>
-              {order.address?.cep}
+              {insertMaskInCEP(order.address?.cep || '')}
             </Descriptions.Item>
           </Descriptions>
           <Divider />
