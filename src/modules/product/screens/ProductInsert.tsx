@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import Input from '../../../shared/components/inputs/input/Input';
@@ -17,6 +17,7 @@ import { useInsertProduct } from '../hooks/useInsertProduct';
 import { ProductRoutesEnum } from '../routes';
 
 const ProductInsert = () => {
+  const { productId } = useParams<{ productId: string }>();
   const {
     product,
     loading,
@@ -24,7 +25,7 @@ const ProductInsert = () => {
     onChangeInput,
     handleInsertProduct,
     handleChangeSelect,
-  } = useInsertProduct();
+  } = useInsertProduct(productId);
   const { categories } = useCategory();
   const navigate = useNavigate();
 
@@ -47,10 +48,9 @@ const ProductInsert = () => {
         },
       ]}
     >
-      <DisplayFlexJustifyCenter>
+      <DisplayFlexJustifyCenter >
         <LimitedContainer width={400}>
           <Input
-            
             onChange={(event) => onChangeInput(event, 'name')}
             value={product.name}
             margin="0px 0px 16px 0px"
