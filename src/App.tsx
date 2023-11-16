@@ -12,14 +12,17 @@ import { getAuthorizationToken, verifyLoggedIn } from './shared/functions/connec
 import { useNotification } from './shared/hooks/useNotification';
 import { useRequests } from './shared/hooks/useRequests';
 import { useGlobalReducer } from './store/reducers/globalReducer/useGlobalReducer';
+import { orderScreens } from './modules/orders/routes';
 
 const routes: RouteObject[] = [...loginRoutes];
-const routesLoggedIn: RouteObject[] = [...firstScreenRoutes, ...productScreens].map((route) => ({
+const routesLoggedIn: RouteObject[] = [
+  ...firstScreenRoutes, ...productScreens, ...orderScreens, ...categoryScreens
+].map((route) => ({
   ...route,
   loader: () => verifyLoggedIn(),
 }));
 
-const router: RemixRouter = createBrowserRouter([...routes, ...categoryScreens, ...routesLoggedIn]);
+const router: RemixRouter = createBrowserRouter([...routes, ...routesLoggedIn]);
 
 function App() {
   const { contextHolder } = useNotification();

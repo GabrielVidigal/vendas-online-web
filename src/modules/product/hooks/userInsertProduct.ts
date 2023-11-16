@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { URL_PRODUCT } from '../../../shared/constants/urls';
 import { connectionAPIPost } from '../../../shared/functions/connection/connectionAPI';
 import { InsertProduct } from '../../../shared/types/dtos/InsertProduct.dto';
-import { ProductRoutesEnum } from '../routes';
 import { useGlobalReducer } from '../../../store/reducers/globalReducer/useGlobalReducer';
+import { ProductRoutesEnum } from '../routes';
 
 export const useInsertProduct = () => {
   const navigate = useNavigate();

@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { URL_CATEGORY } from '../../../shared/constants/urls';
 import { MethodsEnum } from '../../../shared/enums/methods.enum';
 import { useRequests } from '../../../shared/hooks/useRequests';
-import { CategoryRoutesEnum } from '../routes';
 import { useCategoryReducer } from '../../../store/reducers/categoryReducer/useCategoryReducer';
+import { CategoryRoutesEnum } from '../routes';
 
 export const useInsertCategory = () => {
   const [name, setName] = useState('');

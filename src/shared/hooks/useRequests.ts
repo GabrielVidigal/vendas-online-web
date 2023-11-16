@@ -3,6 +3,7 @@ import { NavigateFunction } from 'react-router-dom';
 
 import { FirstScreenRoutesEnum } from '../../modules/firstScreen/routes';
 import { AuthType } from '../../modules/login/types/AuthType';
+import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer';
 import { ERROR_INVALID_PASSWORD } from '../constants/errosStatus';
 import { URL_AUTH } from '../constants/urls';
 import { setAuthorizationToken } from '../functions/connection/auth';
@@ -10,7 +11,6 @@ import ConnectionAPI, {
   connectionAPIPost,
   MethodType,
 } from '../functions/connection/connectionAPI';
-import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer';
 
 export const useRequests = () => {
   const [loading, setLoading] = useState(false);
