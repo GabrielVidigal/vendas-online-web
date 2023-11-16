@@ -1,3 +1,3 @@
-import Order from "./screens/Order";
+import Order from './screens/Order';
 
 export default Order;
