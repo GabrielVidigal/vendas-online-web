@@ -5,9 +5,20 @@ import { UserType } from '../../../modules/login/types/UserType';
 import { AUTHORIZATION_KEY } from '../../constants/authorizationConstants';
 import { URL_USER } from '../../constants/urls';
 import { connectionAPIGet } from './connectionAPI';
-import { getItemStorage, removeItemStorage, setItemStorage } from './storageProxy';
+import { getItemStorage, removeItemStorage, setItemStorage } from './StorageProxy';
+import { UserTokenType } from '../../../modules/login/types/UserTokenType';
 
 export const unsetAuthorizationToken = () => removeItemStorage(AUTHORIZATION_KEY);
+
+export const getUserInforByToken = (): UserTokenType | undefined => {
+  const token = getAuthorizationToken();
+  const tokenSplited = token?.split('.');
+
+  if(tokenSplited && tokenSplited.length > 1) {
+    return JSON.parse(window.atob(tokenSplited[1]));
+  }
+  return undefined;
+}
 
 export const setAuthorizationToken = (token?: string) => {
   if (token) {
