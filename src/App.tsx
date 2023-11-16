@@ -13,11 +13,13 @@ import { getAuthorizationToken, verifyLoggedIn } from './shared/functions/connec
 import { useNotification } from './shared/hooks/useNotification';
 import { useRequests } from './shared/hooks/useRequests';
 import { useGlobalReducer } from './store/reducers/globalReducer/useGlobalReducer';
+import { userScreens } from './modules/user/routes';
 
 const routes: RouteObject[] = [...loginRoutes];
 const routesLoggedIn: RouteObject[] = [
   ...firstScreenRoutes,
   ...productScreens,
+  ...userScreens,
   ...orderScreens,
   ...categoryScreens,
 ].map((route) => ({

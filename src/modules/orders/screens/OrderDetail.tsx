@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 
 import Screen from '../../../shared/components/screen/Screen';
 import { DisplayFlexJustifyCenter } from '../../../shared/components/styles/display.styled';
+import { insertMaskInCEP } from '../../../shared/functions/address';
+import { insertMaskInCpf } from '../../../shared/functions/cpf';
 import { convertNumberToMoney } from '../../../shared/functions/money';
+import { insertMaskInPhone } from '../../../shared/functions/phone';
 import ListOrderProduct from '../components/ListOrderProduct';
 import { useOrderDetail } from '../hooks/useOrderDetail';
 import { OrderRoutesEnum } from '../routes';
-import { insertMaskInCpf } from '../../../shared/functions/cpf';
-import { insertMaskInPhone } from '../../../shared/functions/phone';
-import { insertMaskInCEP } from '../../../shared/functions/address';
 
 const OrderDetail = () => {
   const { orderId } = useParams<{ orderId: string }>();
@@ -44,7 +44,9 @@ const OrderDetail = () => {
             <Descriptions.Item label="Email" span={2}>
               {order.user?.email}
             </Descriptions.Item>
-            <Descriptions.Item label="Telefone">{insertMaskInPhone(order.user?.phone)}</Descriptions.Item>
+            <Descriptions.Item label="Telefone">
+              {insertMaskInPhone(order.user?.phone)}
+            </Descriptions.Item>
             <Descriptions.Item label="CPF" span={2}>
               {insertMaskInCpf(order.user?.cpf)}
             </Descriptions.Item>
