@@ -2,6 +2,7 @@ import { Spin } from 'antd';
 import { Input } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import Screen from '../../../shared/components/screen/Screen';
@@ -17,7 +18,6 @@ import { insertMaskInCpf } from '../../../shared/functions/cpf';
 import { insertMaskInPhone } from '../../../shared/functions/phone';
 import { UserType } from '../../login/types/UserType';
 import { useUser } from '../hooks/useUser';
-import { useNavigate } from 'react-router-dom';
 import { UserRoutesEnum } from '../routes';
 
 const { Search } = Input;
@@ -63,7 +63,7 @@ const User = () => {
 
   const handleGoToInsertAdmin = () => {
     navigate(UserRoutesEnum.USER_INSERT);
-  }
+  };
 
   return (
     <Screen
