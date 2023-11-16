@@ -1,3 +1,3 @@
 export interface StateType {
-    name: string;
-  }
+  name: string;
+}
