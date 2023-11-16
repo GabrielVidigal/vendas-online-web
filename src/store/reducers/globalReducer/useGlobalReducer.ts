@@ -22,6 +22,7 @@ export const useGlobalReducer = () => {
     dispatch(setUserAction(user));
   };
 
+
   return {
     user,
     notification,
