@@ -13,14 +13,13 @@ export const useOrderReducer = () => {
   };
 
   const setOrder = (order: OrderType) => {
-    dispatch(setOrderAction(order))
-  }
+    dispatch(setOrderAction(order));
+  };
 
   return {
     order,
     orders,
     setOrders,
     setOrder,
-
   };
 };

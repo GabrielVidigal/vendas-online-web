@@ -10,7 +10,6 @@ interface OrderState {
 const initialState: OrderState = {
   orders: [],
   order: undefined,
-
 };
 
 export const counterSlice = createSlice({
