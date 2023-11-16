@@ -1,4 +1,4 @@
 export interface UserTokenType {
-    id: number;
-    typeUser: number;
+  id: number;
+  typeUser: number;
 }

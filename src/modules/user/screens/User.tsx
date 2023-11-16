@@ -10,10 +10,13 @@ import {
 } from '../../../shared/components/styles/display.styled';
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled';
 import Table from '../../../shared/components/table/Table';
+import { getUserInforByToken } from '../../../shared/functions/connection/auth';
 import { insertMaskInCpf } from '../../../shared/functions/cpf';
 import { insertMaskInPhone } from '../../../shared/functions/phone';
 import { UserType } from '../../login/types/UserType';
 import { useUser } from '../hooks/useUser';
+import { useMemo } from 'react';
+import { UserTypeEnum } from '../../../shared/enums/userType.enum';
 
 const { Search } = Input;
 
@@ -53,6 +56,8 @@ const columns: ColumnsType<UserType> = [
 const User = () => {
   const { users, loading, handleOnChangeSearch } = useUser();
 
+  const userToken = useMemo(() => getUserInforByToken(), []);
+
   return (
     <Screen
       listBreadcrumb={[
@@ -74,10 +79,12 @@ const User = () => {
             <LimitedContainer width={240}>
               <Search placeholder="Buscar usuário" onSearch={handleOnChangeSearch} enterButton />
             </LimitedContainer>
-            <LimitedContainer width={120}>
-              <Button type="primary" onClick={() => null}>
-                Inserir
+            <LimitedContainer width={180}>
+              {userToken?.typeUser === UserTypeEnum.Root && (
+                <Button type="primary" onClick={() => null}>
+                Inserir Admin
               </Button>
+              )}
             </LimitedContainer>
           </DisplayFlexJustifyBetween>
           <Table columns={columns} dataSource={users} />
