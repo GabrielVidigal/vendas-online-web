@@ -40,7 +40,7 @@ export const useProduct = () => {
   };
 
   const handleEditProduct = async (productId: number) => {
-    navigate(ProductRoutesEnum.PRODUCT_EDIT.replace(':productId', `${productId}`))
+    navigate(ProductRoutesEnum.PRODUCT_EDIT.replace(':productId', `${productId}`));
   };
 
   return {
@@ -49,6 +49,5 @@ export const useProduct = () => {
     onSearch,
     handleDeleteProduct,
     handleEditProduct,
-    
   };
 };

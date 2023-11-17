@@ -13,8 +13,8 @@ export const useProductReducer = () => {
   };
 
   const setProduct = (currentProduct?: ProductType) => {
-    dispatch(setProductAction(currentProduct))
-  }
+    dispatch(setProductAction(currentProduct));
+  };
 
   return {
     product,
