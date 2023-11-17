@@ -4,6 +4,7 @@ import Button from '../../../shared/components/buttons/button/Button';
 import Input from '../../../shared/components/inputs/input/Input';
 import InputMoney from '../../../shared/components/inputs/inputMoney/InputMoney';
 import Select from '../../../shared/components/inputs/select/Select';
+import Loading from '../../../shared/components/loading/Loading';
 import Screen from '../../../shared/components/screen/Screen';
 import {
   DisplayFlex,
@@ -15,7 +16,6 @@ import { CategoryType } from '../../../shared/types/CategoryType';
 import { useCategory } from '../../category/hooks/useCategory';
 import { useInsertProduct } from '../hooks/useInsertProduct';
 import { ProductRoutesEnum } from '../routes';
-import Loading from '../../../shared/components/loading/Loading';
 
 const ProductInsert = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -50,7 +50,7 @@ const ProductInsert = () => {
       {loadingProduct ? (
         <DisplayFlexJustifyCenter>
           <Loading size="large" />
-        </DisplayFlexJustifyCenter>        
+        </DisplayFlexJustifyCenter>
       ) : (
         <DisplayFlexJustifyCenter>
           <LimitedContainer width={400}>

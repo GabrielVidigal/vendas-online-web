@@ -55,11 +55,13 @@ export const useInsertProduct = (productId?: string) => {
   useEffect(() => {
     const findProduct = async () => {
       setLoadingProduct(true);
-      await request(URL_PRODUCT_ID.replace('{productId}', productId || ''),
-       MethodsEnum.GET, setProductReducer);
-      setLoadingProduct(false)
-
-    }
+      await request(
+        URL_PRODUCT_ID.replace('{productId}', productId || ''),
+        MethodsEnum.GET,
+        setProductReducer,
+      );
+      setLoadingProduct(false);
+    };
 
     if (productId) {
       setIsEdit(true);
@@ -99,7 +101,7 @@ export const useInsertProduct = (productId?: string) => {
         MethodsEnum.PUT,
         undefined,
         product,
-        'Produto modificado!'
+        'Produto modificado!',
       );
     } else {
       await request(URL_PRODUCT, MethodsEnum.POST, undefined, product, 'Produto criado!');

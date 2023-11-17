@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
+import Loading from '../../../shared/components/loading/Loading';
 import Screen from '../../../shared/components/screen/Screen';
 import {
   DisplayFlexJustifyBetween,
@@ -18,7 +19,6 @@ import { insertMaskInPhone } from '../../../shared/functions/phone';
 import { UserType } from '../../login/types/UserType';
 import { useUser } from '../hooks/useUser';
 import { UserRoutesEnum } from '../routes';
-import Loading from '../../../shared/components/loading/Loading';
 
 const { Search } = Input;
 
