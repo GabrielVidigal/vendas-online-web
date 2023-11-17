@@ -50,11 +50,20 @@ export const useCategory = () => {
   };
 
   const handleConfirmDeleteCategory = async () => {
-    await request(URL_CATEGORY_ID.replace('{categoryId}', `{categoryIdDeleted}`), MethodsEnum.DELETE, undefined, undefined, 'Categoria deletada com sucesso!')
+    await request(
+      URL_CATEGORY_ID.replace('{categoryId}', `{categoryIdDeleted}`),
+      MethodsEnum.DELETE,
+      undefined,
+      undefined,
+      'Categoria deletada com sucesso!',
+    );
     request(URL_CATEGORY, MethodsEnum.GET, setCategories);
     setCategoryIdDelete(undefined);
   };
-  
+
+  const handleGoToEditCategory = (categoryId: number) => {
+    navigate(CategoryRoutesEnum.CATEGORY_EDIT.replace(':categoryId', `${categoryId}`))
+  }
 
   return {
     categories: categoriesFiltered,
@@ -64,5 +73,6 @@ export const useCategory = () => {
     handleCloseModalDelete,
     handleOpenModalDelete,
     handleConfirmDeleteCategory,
+    handleGoToEditCategory,
   };
 };

@@ -10,9 +10,10 @@ import {
 import { LimitedContainer } from '../../../shared/components/styles/limited.styled';
 import { useInsertCategory } from '../hooks/useInsertCategory';
 import { CategoryRoutesEnum } from '../routes';
+import Loading from '../../../shared/components/loading/Loading';
 
 const CategoryInsert = () => {
-  const { name, loading, handleOnChangeName, disabledButton, insertCategory } = useInsertCategory();
+  const { name, categoryId, loading, handleOnChangeName, disabledButton, insertCategory } = useInsertCategory();
   const navigate = useNavigate();
 
   const handleOnClickCancel = () => {
@@ -29,12 +30,17 @@ const CategoryInsert = () => {
           navigateTo: CategoryRoutesEnum.CATEGORY,
         },
         {
-          name: 'Inserrir categoria',
+          name: categoryId ? 'EDITAR CATEGORIA': 'INSERIR CATEGORIA' ,
         },
       ]}
     >
       <DisplayFlexJustifyCenter>
-        <LimitedContainer width={400}>
+        {loading && categoryId ? (
+          <DisplayFlexJustifyCenter>
+            <Loading size="large"/>
+            </DisplayFlexJustifyCenter>
+        ): (
+          <LimitedContainer width={400}>
           <Input
             onChange={handleOnChangeName}
             value={name}
@@ -55,11 +61,13 @@ const CategoryInsert = () => {
                 onClick={insertCategory}
                 type="primary"
               >
-                Inserir Categoria
+                {categoryId ? 'Salvar': 'Inserir categoria' }
               </Button>
             </LimitedContainer>
           </DisplayFlexJustifyRight>
         </LimitedContainer>
+        )}
+        
       </DisplayFlexJustifyCenter>
     </Screen>
   );
