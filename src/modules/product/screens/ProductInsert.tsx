@@ -15,6 +15,7 @@ import { CategoryType } from '../../../shared/types/CategoryType';
 import { useCategory } from '../../category/hooks/useCategory';
 import { useInsertProduct } from '../hooks/useInsertProduct';
 import { ProductRoutesEnum } from '../routes';
+import Loading from '../../../shared/components/loading/Loading';
 
 const ProductInsert = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -23,13 +24,13 @@ const ProductInsert = () => {
     loading,
     disabledButton,
     isEdit,
+    loadingProduct,
     onChangeInput,
     handleInsertProduct,
     handleChangeSelect,
     handleOnClickCancel,
   } = useInsertProduct(productId);
   const { categories } = useCategory();
-
 
   return (
     <Screen
@@ -46,8 +47,10 @@ const ProductInsert = () => {
         },
       ]}
     >
-      {loading ? (
-        <div>Carregando</div>
+      {loadingProduct ? (
+        <DisplayFlexJustifyCenter>
+          <Loading size="large" />
+        </DisplayFlexJustifyCenter>        
       ) : (
         <DisplayFlexJustifyCenter>
           <LimitedContainer width={400}>
@@ -140,14 +143,12 @@ const ProductInsert = () => {
                   type="primary"
                 >
                   {isEdit ? 'Salvar' : 'Inserir produto'}
-                  
                 </Button>
               </LimitedContainer>
             </DisplayFlexJustifyRight>
           </LimitedContainer>
         </DisplayFlexJustifyCenter>
       )}
-
     </Screen>
   );
 };

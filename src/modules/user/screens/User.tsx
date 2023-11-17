@@ -1,4 +1,3 @@
-import { Spin } from 'antd';
 import { Input } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useMemo } from 'react';
@@ -19,6 +18,7 @@ import { insertMaskInPhone } from '../../../shared/functions/phone';
 import { UserType } from '../../login/types/UserType';
 import { useUser } from '../hooks/useUser';
 import { UserRoutesEnum } from '../routes';
+import Loading from '../../../shared/components/loading/Loading';
 
 const { Search } = Input;
 
@@ -78,7 +78,7 @@ const User = () => {
     >
       {loading ? (
         <DisplayFlexJustifyCenter>
-          <Spin size="large" />
+          <Loading size="large" />
         </DisplayFlexJustifyCenter>
       ) : (
         <>

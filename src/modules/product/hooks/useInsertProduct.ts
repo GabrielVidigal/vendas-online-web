@@ -9,25 +9,24 @@ import { useProductReducer } from '../../../store/reducers/productReducer/usePro
 import { ProductRoutesEnum } from '../routes';
 
 const DEFAULT_PRODUCT = {
-    name: '',
-    price: 0,
-    image: '',
-    weight: 0,
-    length: 0,
-    height: 0,
-    width: 0,
-    diameter: 0,
-}
+  name: '',
+  price: 0,
+  image: '',
+  weight: 0,
+  length: 0,
+  height: 0,
+  width: 0,
+  diameter: 0,
+};
 
 export const useInsertProduct = (productId?: string) => {
   const navigate = useNavigate();
-  const { request, loading} = useRequests();
+  const [loadingProduct, setLoadingProduct] = useState(false);
+  const { request, loading } = useRequests();
   const { product: productReducer, setProduct: setProductReducer } = useProductReducer();
   const [isEdit, setIsEdit] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
   const [product, setProduct] = useState<InsertProduct>(DEFAULT_PRODUCT);
-
-
 
   useEffect(() => {
     if (product.name && product.categoryId && product.image && product.price > 0) {
@@ -54,9 +53,17 @@ export const useInsertProduct = (productId?: string) => {
   }, [productReducer]);
 
   useEffect(() => {
+    const findProduct = async () => {
+      setLoadingProduct(true);
+      await request(URL_PRODUCT_ID.replace('{productId}', productId || ''),
+       MethodsEnum.GET, setProductReducer);
+      setLoadingProduct(false)
+
+    }
+
     if (productId) {
       setIsEdit(true);
-      request(URL_PRODUCT_ID.replace('{productId}', productId), MethodsEnum.GET, setProductReducer);
+      findProduct();
     } else {
       setProductReducer(undefined);
       setProduct(DEFAULT_PRODUCT);
@@ -87,12 +94,17 @@ export const useInsertProduct = (productId?: string) => {
 
   const handleInsertProduct = async () => {
     if (productId) {
-      await 
-      request(URL_PRODUCT_ID.replace('{productId}', productId), MethodsEnum.PUT, undefined, product)
+      await request(
+        URL_PRODUCT_ID.replace('{productId}', productId),
+        MethodsEnum.PUT,
+        undefined,
+        product,
+        'Produto modificado!'
+      );
     } else {
-      await request(URL_PRODUCT, MethodsEnum.POST, undefined, product)
+      await request(URL_PRODUCT, MethodsEnum.POST, undefined, product, 'Produto criado!');
     }
-    navigate(ProductRoutesEnum.PRODUCT); 
+    navigate(ProductRoutesEnum.PRODUCT);
   };
 
   return {
@@ -100,6 +112,7 @@ export const useInsertProduct = (productId?: string) => {
     loading,
     disabledButton,
     isEdit,
+    loadingProduct,
     onChangeInput,
     handleInsertProduct,
     handleChangeSelect,
