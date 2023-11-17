@@ -59,7 +59,7 @@ const Product = () => {
         render: (_, product) => <a>{convertNumberToMoney(product.price)}</a>,
       },
       {
-        title: 'Action',
+        title: 'Ações',
         dataIndex: '',
         width: 240,
         key: 'x',
@@ -99,7 +99,6 @@ const Product = () => {
         },
       ]}
     >
-
       <Modal
         title="Atenção"
         open={openModalDelete}

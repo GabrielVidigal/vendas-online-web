@@ -9,7 +9,7 @@ import { useProductReducer } from '../../../store/reducers/productReducer/usePro
 import { ProductRoutesEnum } from '../routes';
 
 export const useProduct = () => {
-  const [productIdDelete, setProductIdDelete] = useState<number | undefined >();
+  const [productIdDelete, setProductIdDelete] = useState<number | undefined>();
   const { products, setProducts } = useProductReducer();
   const [productsFiltered, setProdutsFiltered] = useState<ProductType[]>([]);
   const { request } = useRequests();
@@ -46,11 +46,11 @@ export const useProduct = () => {
   };
 
   const handleCloseModalDelete = () => {
-    setProductIdDelete(undefined)
-  }
+    setProductIdDelete(undefined);
+  };
   const handleOpenModalDelete = (productId: number) => {
-    setProductIdDelete(productId)
-  }
+    setProductIdDelete(productId);
+  };
 
   return {
     productsFiltered,
